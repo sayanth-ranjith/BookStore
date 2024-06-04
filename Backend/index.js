@@ -87,6 +87,23 @@ app.post("/updateBook/:id",async (req,res)=>{
         console.log("Error while trying to update book "+ req.params.id );
         return res.status(500).send(error.message);
     }
+});
+
+app.delete("/deleteBook/:id",async(req,res)=>{
+    try{
+        const bookId = req.params.id;
+        const deletedBook = await Book.findByIdAndDelete(bookId);
+        if(!deletedBook){
+            return res.status(404).send("Book not found to delete.");
+        }
+    
+        return res.status(200).send("Deleted successfully.");
+    }
+    catch(error){
+        return res.status(500).send("Error while trying to delete data"+ error.message);
+    }
+
+
 })
 
 
