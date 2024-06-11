@@ -4,7 +4,7 @@ import { Book } from "../../Backend/Models/Book-Model.js?";
 const router = express.Router();
 
 
-//Method to insert book into DB(POST TO DB)
+//Method to insert book into DB(POST TO DB) create
 
 router.post("/pushBook",async (req,res)=>{
     try{
@@ -27,7 +27,7 @@ router.post("/pushBook",async (req,res)=>{
     }
 });
 
-//Method to get books from DB (GET FROM DB)
+//Method to get books from DB (GET FROM DB) read
 
 router.get("/getBooks",async (req,res)=>{
     try{
@@ -44,7 +44,7 @@ router.get("/getBooks",async (req,res)=>{
 
 });
 
-//Method to get books from DB based on ID (GET FROM DB)
+//Method to get books from DB based on ID (GET FROM DB) 
 
 router.get("/getById/:id",async (req,res)=>{
     try{
@@ -82,6 +82,7 @@ router.post("/updateBook/:id",async (req,res)=>{
     }
 });
 
+// delete 
 router.delete("/deleteBook/:id",async(req,res)=>{
     try{
         const bookId = req.params.id;
