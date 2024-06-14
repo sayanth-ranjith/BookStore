@@ -8,12 +8,11 @@ const app = express();
 
 app.use(express.json()); 
 
-// app.use(cors({
-//     origin:'http://localhost:5500',
-//     methods:['GET','PUT','POST','DELETE'],
-//     allowedHeaders:['Content-Type'],
-// }));
-
+app.use(cors({
+    origin: ['http://localhost:5500', 'http://localhost:5173'],
+    methods: ['GET', 'PUT', 'POST', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+  }));
 app.get("/",(req,res)=>{
     res.send({"data":"First page"});
 });
