@@ -46,10 +46,13 @@ const Home = () => {
         <p>What do you want to do?</p>
         <ButtonContainer>
           <Link to="/books/getBooks">
-          <Button>View available books</Button>
+            <Button>View available books</Button>
           </Link>
-          <Button>Create a book</Button>
-          <Button>Delete a book</Button>
+
+          <Link to="/books/pushBook">
+            <Button>Create a book</Button>
+          </Link>
+          
           <Button>Edit a book</Button>
           <Button>View a book by ID</Button>
         </ButtonContainer>

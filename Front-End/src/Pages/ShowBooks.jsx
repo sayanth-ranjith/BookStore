@@ -6,6 +6,10 @@ const ShowBooks = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
+    fetchBooks();
+  }, []);
+
+  const fetchBooks = () => {
     axios.get('http://localhost:5500/books/getBooks')
       .then(response => {
         setBooks(response.data); // Update state with fetched data
@@ -14,7 +18,19 @@ const ShowBooks = () => {
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  };
+
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:5500/books/deleteBook/${id}`)
+      .then(() => {
+        // Remove the deleted book from the state
+        setBooks(prevBooks => prevBooks.filter(book => book._id !== id));
+      })
+      .catch(error => {
+        console.error('Error deleting book:', error);
+        alert("Could not delete book,Please try later!");
+      });
+  };
 
   const tableStyle = {
     width: '100%',
@@ -56,6 +72,9 @@ const ShowBooks = () => {
               <td style={thTdStyle}>{book.title}</td>
               <td style={thTdStyle}>{book.publishYear}</td>
               <td style={thTdStyle}>{book._id}</td>
+              <td style={thTdStyle}>
+                <button onClick={() => handleDelete(book._id)}>Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>
